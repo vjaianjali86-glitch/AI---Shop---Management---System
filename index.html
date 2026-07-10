@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Shop Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="status">✅ Logged in</div>
+    <button onclick="logout()">Logout</button>
+    <h3>Dashboard</h3>
+    <ul>
+      <li onclick="showSection('sale')">Add Sale</li>
+      <li onclick="showSection('inventory')">Inventory</li>
+      <li onclick="showSection('reports')">Reports</li>
+      <li onclick="showSection('expenses')">Expenses</li>
+      <li onclick="showSection('customers')">Customers</li>
+      <li onclick="showSection('auto')">Auto Order</li>
+      <li onclick="showSection('forecast')">Forecast</li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <h1>😀 AI Shop Management System</h1>
+
+    <!-- Login Section -->
+    <div id="loginSection" class="section">
+      <h2>Login Section</h2>
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <p id="loginMsg"></p>
+    </div>
+
+    <!-- Add Sale Section -->
+    <div id="sale" class="section hidden">
+      <h2>Log New Sale</h2>
+      <input type="date" id="saleDate">
+      <input type="text" id="saleItem" placeholder="Item Name">
+      <input type="number" id="saleQty" placeholder="Quantity" value="1">
+      <input type="number" id="salePrice" placeholder="Selling Price (₹)">
+      <input type="number" id="saleCost" placeholder="Cost Price (₹)">
+      <input type="text" id="custName" placeholder="Customer Name">
+      <input type="text" id="custPhone" placeholder="Customer Phone">
+      <button onclick="addSale()">Add Sale</button>
+    </div>
+
+    <!-- Expenses Section -->
+    <div id="expenses" class="section hidden">
+      <h2>Expense Tracker</h2>
+      <table id="expenseTable" border="1">
+        <tr><th>Date</th><th>Category</th><th>Amount (₹)</th></tr>
+      </table>
+      <input type="date" id="expDate">
+      <input type="text" id="expCategory" placeholder="Category">
+      <input type="number" id="expAmount" placeholder="Amount (₹)">
+      <button onclick="addExpense()">Add Expense</button>
+    </div>
+
+    <!-- Inventory Section -->
+    <div id="inventory" class="section hidden">
+      <h2>Inventory</h2>
+      <table id="invTable" border="1">
+        <tr><th>Item</th><th>Stock</th><th>Cost Price (₹)</th></tr>
+      </table>
+      <input type="text" id="invItem" placeholder="New Item">
+      <input type="number" id="invStock" placeholder="Stock">
+      <input type="number" id="invCost" placeholder="Cost Price (₹)">
+      <button onclick="addItem()">Add Item</button>
+    </div>
+
+    <!-- Reports Section -->
+    <div id="reports" class="section hidden">
+      <h2>Sales & Profit Report</h2>
+      <table id="reportTable" border="1">
+        <tr><th>Date</th><th>Item</th><th>Quantity</th><th>Price</th><th>Cost</th><th>Profit</th></tr>
+      </table>
+      <p id="reportSummary"></p>
+    </div>
+
+    <!-- Customers Section -->
+    <div id="customers" class="section hidden">
+      <h2>Customer Records</h2>
+      <table id="custTable" border="1">
+        <tr><th>Name</th><th>Phone</th><th>Item</th><th>Amount</th></tr>
+      </table>
+    </div>
+
+    <!-- Auto Order Section -->
+    <div id="auto" class="section hidden">
+      <h2>Auto Reorder System</h2>
+      <p>All items sufficiently stocked.</p>
+    </div>
+
+    <!-- Forecast Section -->
+    <div id="forecast" class="section hidden">
+      <h2>Demand Forecast</h2>
+      <p>Predicted demand next month: 2 items.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
