@@ -4,7 +4,7 @@ function login() {
 
   if(user && pass) {
     document.getElementById("loginMsg").innerText = "✅ Logged in successfully!";
-    // Hide login section and show dashboard (default: Add Sale)
+    // Hide login section and show Add Sale section
     showSection('sale');
   } else {
     document.getElementById("loginMsg").innerText = "❌ Please enter username and password.";
@@ -17,9 +17,7 @@ function logout() {
 }
 
 function showSection(id) {
-  // Hide all sections
   document.querySelectorAll(".section").forEach(sec => sec.classList.add("hidden"));
-  // Show the requested section
   document.getElementById(id).classList.remove("hidden");
 }
 
@@ -30,7 +28,7 @@ function addExpense() {
   let amt = document.getElementById("expAmount").value;
   if(date && cat && amt > 0) {
     let table = document.getElementById("expenseTable");
-    table.innerHTML += <tr><td>${date}</td><td>${cat}</td><td>${amt}</td></tr>;
+    table.innerHTML += `<tr><td>${date}</td><td>${cat}</td><td>${amt}</td></tr>`;
   }
 }
 
@@ -41,7 +39,7 @@ function addItem() {
   let cost = document.getElementById("invCost").value;
   if(item && stock >= 0 && cost >= 0) {
     let table = document.getElementById("invTable");
-    table.innerHTML += <tr><td>${item}</td><td>${stock}</td><td>${cost}</td></tr>;
+    table.innerHTML += `<tr><td>${item}</td><td>${stock}</td><td>${cost}</td></tr>`;
   }
 }
 
@@ -98,5 +96,4 @@ function updateReportSummary() {
   });
 
   document.getElementById("reportSummary").innerText =
-    Total Sales: ₹${totalSales.toFixed(2)} | Total Profit: ₹${totalProfit.toFixed(2)};
-}
+    `Total Sales: ₹${totalSales.toFixed(2)} | Total Profit: ₹${totalProfit.toFixed(2
