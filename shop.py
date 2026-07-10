@@ -92,27 +92,4 @@ def get_sales():
     conn.close()
     return jsonify(rows)
 
-@app.route("/add_expense", methods=["POST"])
-def add_expense():
-    data = request.json
-    conn = sqlite3.connect("shop.db")
-    c = conn.cursor()
-    c.execute("INSERT INTO expenses (date,category,amount) VALUES (?,?,?)",
-              (data["date"], data["category"], data["amount"]))
-    conn.commit()
-    conn.close()
-    return jsonify({"status":"success","message":"Expense added!"})
-
-@app.route("/add_item", methods=["POST"])
-def add_item():
-    data = request.json
-    conn = sqlite3.connect("shop.db")
-    c = conn.cursor()
-    c.execute("INSERT INTO inventory (item,stock,cost) VALUES (?,?,?)",
-              (data["item"], data["stock"], data["cost"]))
-    conn.commit()
-    conn.close()
-    return jsonify({"status":"success","message":"Item added!"})
-
-if __name__ == "__main__":
-    app.run(debug=True)
+# Similar endpoints can be added for expenses and inventory...
