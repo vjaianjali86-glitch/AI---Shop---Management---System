@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
 
-app = Flask(_name_)
+app = Flask(__name__)
 CORS(app)
 
 # --- Database setup ---
@@ -91,3 +91,28 @@ def get_sales():
     rows = c.fetchall()
     conn.close()
     return jsonify(rows)
+
+@app.route("/add_expense", methods=["POST"])
+def add_expense():
+    data = request.json
+    conn = sqlite3.connect("shop.db")
+    c = conn.cursor()
+    c.execute("INSERT INTO expenses (date,category,amount) VALUES (?,?,?)",
+              (data["date"], data["category"], data["amount"]))
+    conn.commit()
+    conn.close()
+    return jsonify({"status":"success","message":"Expense added!"})
+
+@app.route("/add_item", methods=["POST"])
+def add_item():
+    data = request.json
+    conn = sqlite3.connect("shop.db")
+    c = conn.cursor()
+    c.execute("INSERT INTO inventory (item,stock,cost) VALUES (?,?,?)",
+              (data["item"], data["stock"], data["cost"]))
+    conn.commit()
+    conn.close()
+    return jsonify({"status":"success","message":"Item added!"})
+
+if __name__ == "__main__":
+    app.run(debug=True)
